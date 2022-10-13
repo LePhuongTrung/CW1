@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateActivity"
+    android:padding="30dp">
+
+    <ScrollView
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:text="Scroll Down"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="44dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/UpdateName"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:background="@drawable/custom_input"
+                android:hint="Trip Name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/UpdateDestination"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:background="@drawable/custom_input"
+                android:hint="Trip Destination"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/UpdateName" />
+
+
+            <EditText
+                android:id="@+id/Date"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                app:helperText="Reuired*"
+                android:inputType="textPersonName"
+                android:onClick="showDatePickerDialog"
+                android:hint="dd/mm/yyyy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/destination_input_input"
+                tools:ignore="OnClick"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/Risk"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Require Risks Assessment:"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Date"
+                android:layout_marginLeft="32dp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupUpdate"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Rick"
+                android:layout_marginLeft="20dp">
+
+                <RadioButton
+                    android:id="@+id/Yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:text="Yes"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="311dp"
+                    android:layout_marginLeft="10dp" />
+
+                <RadioButton
+                    android:id="@+id/No"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="No"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="311dp"
+                    android:layout_marginLeft="20dp" />
+
+            </RadioGroup>
+            <EditText
+                android:id="@+id/decription"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:background="@drawable/custom_input"
+                android:hint="Trip description"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+            <EditText
+                android:id="@+id/TaxiPhone"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:background="@drawable/custom_input"
+                android:hint="Taxi Phone Number"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/decription" />
+
+            <EditText
+                android:id="@+id/hostelName"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:background="@drawable/custom_input"
+                android:hint="hostel Name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TaxiPhone" />
+
+            <Button
+                android:id="@+id/update_button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="40dp"
+                android:text="Update"
+                android:textSize="20sp"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hostelName" />
+
+            <Button
+                android:id="@+id/add_Expenses"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="16dp"
+                android:text="Add Expenses"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/update_button" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
