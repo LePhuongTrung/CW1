@@ -8,19 +8,23 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
+        android:layout_width="390dp"
+        android:layout_marginStart="12dp"
         android:layout_height="100dp"
         android:layout_marginTop="12dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_card"
             android:padding="12dp">
 
             <TextView
                 android:id="@+id/amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
                 android:text="100.000"
                 android:textColor="#000"
                 android:textSize="35sp"
@@ -28,12 +32,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <TextView
                 android:id="@+id/TypeRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:text="Type"
                 android:textColor="#000"
                 android:textSize="20sp"
@@ -41,12 +46,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <TextView
                 android:id="@+id/DateRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:text="dd/mm/yyyy"
                 app:layout_constraintStart_toStartOf="@+id/TypeRow"
                 app:layout_constraintTop_toBottomOf="@+id/TypeRow" />

@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/Search"
-        android:title="Search"
-        android:icon="@drawable/ic_search"
-        app:showAsAction="always"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
-    <item
         android:id="@+id/delete_all"
         android:title="Delete All"
         android:icon="@drawable/ic_delete"

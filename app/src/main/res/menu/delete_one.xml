@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/Expense"
+        android:title="Expense List"
+        android:icon="@drawable/ic_expense"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/delete_One"
         android:title="Delete one"
         android:icon="@drawable/ic_delete"
         app:showAsAction="always"/>
-
 </menu>

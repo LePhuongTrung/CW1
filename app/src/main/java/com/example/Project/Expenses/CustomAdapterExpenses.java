@@ -1,9 +1,8 @@
-package com.example.Project;
+package com.example.Project.Expenses;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.Project.R;
+
 import java.util.ArrayList;
 
 public class CustomAdapterExpenses extends RecyclerView.Adapter<CustomAdapterExpenses.MyViewHolder> {
@@ -28,8 +29,8 @@ public class CustomAdapterExpenses extends RecyclerView.Adapter<CustomAdapterExp
     private ArrayList date;
     private ArrayList amount;
 
-    CustomAdapterExpenses(Activity activity, Context context, ArrayList id, ArrayList type,
-                          ArrayList date, ArrayList amount){
+    public CustomAdapterExpenses(Activity activity, Context context, ArrayList id, ArrayList type,
+                                 ArrayList date, ArrayList amount){
         this.activity = activity;
         this.context = context;
         this.id = id;
@@ -72,7 +73,7 @@ public class CustomAdapterExpenses extends RecyclerView.Adapter<CustomAdapterExp
             amount = itemView.findViewById(R.id.amount);
             date = itemView.findViewById(R.id.DateRow);
             expensesLayout = itemView.findViewById(R.id.expensesRow);
-            //Animate Recyclerview
+
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
             expensesLayout.setAnimation(translate_anim);
         }

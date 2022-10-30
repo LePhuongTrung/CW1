@@ -10,19 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DropdownMenu">
-        <activity android:name="UpdateActivity"
+        <activity android:name=".Trip.Update"
             android:label="Edit Trip"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name="addExpenses"
+            android:parentActivityName=".Trip.MainActivity"/>
+        <activity android:name=".Weather"
+            android:label="Test"
+            android:parentActivityName=".Trip.MainActivity"/>
+        <activity android:name=".Expenses.Create"
             android:label="Add Expenses"
-            android:parentActivityName=".addExpenses"/>
-        <activity android:name=".ExpensesList"
+            android:parentActivityName=".Expenses.Create"/>
+        <activity android:name=".Expenses.List"
             android:label="List Expenses" />
         <activity
-            android:name=".AddTrip"
+            android:name=".Trip.Create"
             android:label="Add Trip"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name="com.example.Project.MainActivity">
+            android:parentActivityName=".Trip.MainActivity" />
+        <activity android:name="com.example.Project.Trip.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.SEARCH"/>

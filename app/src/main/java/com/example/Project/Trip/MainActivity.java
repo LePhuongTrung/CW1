@@ -1,31 +1,34 @@
-package com.example.Project;
+package com.example.Project.Trip;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.Project.MyDatabaseHelper;
+import com.example.Project.R;
+import com.example.Project.Weather;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -36,50 +39,45 @@ public class MainActivity extends AppCompatActivity {
     ImageView empty_imageview;
     TextView no_data;
     BottomNavigationView footer;
+    TextInputLayout StringSearch;
 
     MyDatabaseHelper DB;
     ArrayList<String> id, name, destination, day_of_trip, risk, taxiPhone, HostelName;
     CustomAdapter customAdapter;
+    Spinner TypeSearch;
 
-    String search = "1";
-    String searchEnter;
+    String searchEnter ="", typeSearch;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
-        searchEnter = intent.getStringExtra("search");
-        if (searchEnter == null){
-            storeDataInArrays(search);
-        } else {
-            storeDataInArrays(searchEnter);
-        }
+        connectLayout();
+        createTypeSearchSelecter();
+        getIntentValue();
 
-        recyclerView = findViewById(R.id.recyclerView);
-        add_button = findViewById(R.id.add_button);
-        empty_imageview = findViewById(R.id.empty_imageview);
-        no_data = findViewById(R.id.no_data);
-        footer = findViewById(R.id.footer);
         footer.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.Trip:
-                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        startActivity(new Intent(MainActivity.this,MainActivity.class));
                         break;
-                    case R.id.Upload:
+                    case R.id.Weather:
+                        startActivity(new Intent(MainActivity.this, Weather.class));
                         break;
                 }
+                DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.footer);
+                drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddTrip.class);
+                Intent intent = new Intent(MainActivity.this, Create.class);
                 startActivity(intent);
             }
         });
@@ -93,13 +91,44 @@ public class MainActivity extends AppCompatActivity {
         taxiPhone = new ArrayList<>();
         HostelName = new ArrayList<>();
 
-
+        if (searchEnter == null || searchEnter == ""){
+            storeDataInArrays(searchEnter, typeSearch);
+        } else {
+            storeDataInArrays(searchEnter, typeSearch);
+        }
 
         customAdapter = new CustomAdapter(MainActivity.this,this, id, name, destination,
                 day_of_trip, risk, taxiPhone, HostelName);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+    }
+
+    private void createTypeSearchSelecter() {
+
+        TypeSearch = findViewById(R.id.Spinner);
+        String[] items = new String[]{"Name", "Destination", "Date"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        TypeSearch.setAdapter(adapter);
+
+        typeSearch = TypeSearch.getSelectedItem().toString();
+    }
+
+    public void getIntentValue(){
+        Intent intent = getIntent();
+        searchEnter = intent.getStringExtra("search");
+        typeSearch = intent.getStringExtra("type");
+    }
+
+    public void connectLayout(){
+        TypeSearch = findViewById(R.id.Spinner);
+        recyclerView = findViewById(R.id.recyclerView);
+        add_button = findViewById(R.id.add_button);
+        empty_imageview = findViewById(R.id.empty_imageview);
+        no_data = findViewById(R.id.no_data);
+        footer = findViewById(R.id.footer);
+        StringSearch = findViewById(R.id.StringSearch);
     }
 
     @Override
@@ -110,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void storeDataInArrays(String search){
-        Cursor cursor = DB.readAllData(search);
+    void storeDataInArrays(String search, String Type){
+        Cursor cursor = (Cursor) DB.readAllData(search, Type);
         if(cursor.getCount() == 0){
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);
@@ -132,24 +161,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my_menu, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.Search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Intent intent = new Intent( MainActivity.this, MainActivity.class);
-                intent.putExtra("search", String.valueOf(query));
-                startActivity(intent);
-                return false;
-            }
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.delete, menu);
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
         return true;
     }
 
@@ -163,14 +177,13 @@ public class MainActivity extends AppCompatActivity {
 
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete All?");
-        builder.setMessage("Are you sure you want to delete all Data?");
+        builder.setTitle("Delete All Trip Information?");
+        builder.setMessage("Are you sure you want to delete All Trip Information?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 MyDatabaseHelper DB = new MyDatabaseHelper(MainActivity.this);
                 DB.deleteAllData();
-                //Refresh Activity
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -185,4 +198,10 @@ public class MainActivity extends AppCompatActivity {
         builder.create().show();
     }
 
+    public void SearchData(View view) {
+        Intent intent = new Intent( MainActivity.this, MainActivity.class);
+        intent.putExtra("search", StringSearch.getEditText().getText().toString());
+        intent.putExtra("type", TypeSearch.getSelectedItem().toString());
+        startActivity(intent);
+    }
 }

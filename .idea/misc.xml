@@ -3,11 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/activity_add.xml" value="0.16" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/drawable/custom_card.xml" value="0.245" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/drawable/custom_input.xml" value="0.245" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/drawable/ic_add.xml" value="0.203" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.1" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.191" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/drawable/ic_calendar.xml" value="0.245" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/drawable/ic_expense.xml" value="0.19" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/drawable/list_view_selector.xml" value="0.165" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/activity_add.xml" value="0.2" />
         <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/activity_update.xml" value="0.25416666666666665" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/activity_update.xml" value="0.2" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/add_expenses.xml" value="0.264" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/expenses_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/expenses_row.xml" value="0.25416666666666665" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/itemsearch.xml" value="0.25416666666666665" />
         <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/list_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/list_seletor.xml" value="0.4" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/listweather.xml" value="0.253125" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/my_row.xml" value="0.2" />
         <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/search.xml" value="0.1" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/send_data.xml" value="0.25416666666666665" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/layout/test.xml" value="0.25416666666666665" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/menu/delete_one.xml" value="0.1828125" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/menu/expense.xml" value="0.18177083333333333" />
+        <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1 - Copy/app/src/main/res/menu/weather.xml" value="0.25416666666666665" />
         <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1/app/src/main/res/drawable/custom_input.xml" value="0.1705" />
         <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1/app/src/main/res/drawable/ic_search.xml" value="0.1525" />
         <entry key="..\:/study/IT/top-up/comp1786-mobile/CW1/app/src/main/res/layout/activity_add.xml" value="0.128" />

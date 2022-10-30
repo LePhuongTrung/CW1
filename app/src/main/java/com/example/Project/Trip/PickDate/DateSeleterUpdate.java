@@ -1,4 +1,4 @@
-package com.example.Project;
+package com.example.Project.Trip.PickDate;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -11,9 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.Project.Trip.Update;
+
+
 import java.time.LocalDate;
 
-public class DateSeleter1 extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class DateSeleterUpdate extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @NonNull
     @Override
@@ -28,8 +31,8 @@ public class DateSeleter1 extends DialogFragment implements DatePickerDialog.OnD
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public void onDateSet(DatePicker datePicker, int day, int month, int year) {
-        LocalDate dot = LocalDate.of(day, ++month, year);
-        ((UpdateActivity)getActivity()).updateDOT(dot);
+    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        LocalDate dot = LocalDate.of(year, ++month, day);
+        ((Update)getActivity()).updateDOT(dot);
     }
 }

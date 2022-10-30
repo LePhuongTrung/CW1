@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addExpenses">
+    tools:context=".Expenses.Create">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Type"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
-        android:hint="@string/select"
+        android:hint="Travel"
         app:helperText="Required"
         app:helperTextTextColor="@color/red"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginStart="5dp"
+        android:hint="Amount"
         app:helperText="Required"
         app:helperTextTextColor="@color/red"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,9 +42,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="Amount" />
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
     <EditText
         android:id="@+id/Time"
@@ -56,9 +55,12 @@
         android:paddingEnd="6dp"
         android:background="@drawable/custom_input"
         android:inputType="textPersonName"
+        android:text="yyyy/mm/dd"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000"
+        android:clickable="true"
+        android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Amount" />

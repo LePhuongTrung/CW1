@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 
-class MyDatabaseHelper extends SQLiteOpenHelper {
+public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "TripDetails.db";
@@ -32,14 +32,14 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String Additional_COLUMN = "Additional_comments";
 
 
-    MyDatabaseHelper(@Nullable Context context) {
+    public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_NAME +
+        String createTripTable = "CREATE TABLE " + TABLE_NAME +
                 " (" + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NAME_COLUMN + " TEXT, "
                 + DESTINATION_COLUMN +" TEXT, "
@@ -48,16 +48,16 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
                 + DESCRIPTION_COLUMN + " TEXT,"
                 + TAXI_PHONE_COLUM + " TEXT, "
                 + HOSTEL_NAME_COLUMN + " TEXT) ";
-        db.execSQL(query);
+        db.execSQL(createTripTable);
 
-        String query2 = "CREATE TABLE " + TABLE_EXPENSES +
+        String createExpenseTable = "CREATE TABLE " + TABLE_EXPENSES +
                 " (" + EXPENSES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TRIP_ID + " INTEGER, "
+                + TRIP_ID + " INTEGER NOT NULL, "
                 + TYPE +" TEXT, "
                 + AMOUNT + " TEXT, "
                 + TIME_COLUMN + " TEXT, "
                 + Additional_COLUMN + " TEXT) ";
-        db.execSQL(query2);
+        db.execSQL(createExpenseTable);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
@@ -65,7 +65,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void insertDetails(String name, String destination, String dot, String risk, String description, String taxiPhone, String hostelName){
+    public boolean insertTrip(String name, String destination, String dot, String risk, String description, String taxiPhone, String hostelName){
         ContentValues rowValues = new ContentValues();
 
 
@@ -84,9 +84,10 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }else {
             Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
         }
+        return true;
     }
 
-    void insertExpenses(String tripId, String type, String amount, String time, String additional){
+    public void insertExpenses(String tripId, String type, String amount, String time, String additional){
         ContentValues rowValues = new ContentValues();
 
         rowValues.put(TRIP_ID, tripId);
@@ -102,15 +103,25 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }else {
             Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
         }
+        return;
     }
-    Cursor readAllData(String search){
+    public Cursor readAllData(String search, String TYPE){
         SQLiteDatabase db;
         String query;
-        if (search == "1"){
+        if (search == null || search == ""){
             query = "SELECT * FROM " + TABLE_NAME;
             db = this.getReadableDatabase();
-        } else {
+        }
+        else if (TYPE.equals("Name")) {
             query = "SELECT * FROM " + TABLE_NAME + " WHERE " + NAME_COLUMN + " LIKE " + " '%" + search + "%' ";
+            db = this.getReadableDatabase();
+        }
+        else if (TYPE == "Destination") {
+            query = "SELECT * FROM " + TABLE_NAME + " WHERE " + DESTINATION_COLUMN + " LIKE " + " '%" + search + "%' ";
+            db = this.getReadableDatabase();
+        }
+        else {
+            query = "SELECT * FROM " + TABLE_NAME + " WHERE " + DOT_COLUMN + " LIKE " + " '%" + search + "%' ";
             db = this.getReadableDatabase();
         }
 
@@ -122,7 +133,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    Cursor readExpenses(String id){
+    public Cursor readExpenses(String id){
         String query = "SELECT * FROM " + TABLE_EXPENSES +
                         " WHERE " + TRIP_ID + "=" + id;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -135,7 +146,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    void updateData(String id, String name, String destination, String dot, String risk, String description, String taxiPhone, String hostelName){
+    public void updateData(String id, String name, String destination, String dot, String risk, String description, String taxiPhone, String hostelName){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues rowValues = new ContentValues();
 
@@ -153,10 +164,10 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }else {
             Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
         }
-
+        return;
     }
 
-    void deleteOneRow(String row_id){
+    public void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});
         if(result == -1){
@@ -164,11 +175,13 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }else{
             Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
         }
+        return;
     }
 
-    void deleteAllData(){
+    public void deleteAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
+        return;
     }
 
 }

@@ -4,184 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateActivity"
-    android:padding="30dp">
+    tools:context=".Trip.Update">
 
-    <ScrollView
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
-        android:text="Scroll Down"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/UpdateName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="Trip Name"
+        app:helperText="Reuired*"
+        app:helperTextTextColor="@color/red"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="44dp">
-        <LinearLayout
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/UpdateNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/UpdateDestination"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:hint="Trip Destination"
+        app:helperText="Reuired*"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/UpdateDestinationInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Date"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:hint="yyyy/mm/dd"
+        app:helperText="Reuired*"
+        android:onClick="showDatePickerDialog"
+        app:helperTextTextColor="@color/red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateDestination">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/DateInput"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/Risk"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="5dp"
+        android:text="Require Risks Assessment:"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Date"
+        android:layout_marginLeft="32dp" />
+
+    <RadioGroup
+
+        android:id="@+id/radioGroupUpdate"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Risk">
+
+        <RadioButton
+            android:id="@+id/Yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <EditText
-                android:id="@+id/UpdateName"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:background="@drawable/custom_input"
-                android:hint="Trip Name"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Yes"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="311dp" />
 
-            <EditText
-                android:id="@+id/UpdateDestination"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:background="@drawable/custom_input"
-                android:hint="Trip Destination"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UpdateName" />
+        <RadioButton
+            android:id="@+id/No"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="No"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="311dp" />
 
+    </RadioGroup>
 
-            <EditText
-                android:id="@+id/Date"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="2dp"
-                android:ems="10"
-                app:helperText="Reuired*"
-                android:inputType="textPersonName"
-                android:onClick="showDatePickerDialog"
-                android:hint="dd/mm/yyyy"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/destination_input_input"
-                tools:ignore="OnClick"
-                android:layout_marginLeft="20dp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/decription"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="Trip Description"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupUpdate">
 
-            <TextView
-                android:id="@+id/Risk"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Require Risks Assessment:"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Date"
-                android:layout_marginLeft="32dp" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <RadioGroup
-                android:id="@+id/radioGroupUpdate"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Rick"
-                android:layout_marginLeft="20dp">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/TaxiPhone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="Taxi Phone Number"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/decription">
 
-                <RadioButton
-                    android:id="@+id/Yes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="0dp"
-                    android:text="Yes"
-                    tools:layout_editor_absoluteX="53dp"
-                    tools:layout_editor_absoluteY="311dp"
-                    android:layout_marginLeft="10dp" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/TaxiPhoneInput"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-                <RadioButton
-                    android:id="@+id/No"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="No"
-                    tools:layout_editor_absoluteX="53dp"
-                    tools:layout_editor_absoluteY="311dp"
-                    android:layout_marginLeft="20dp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/hostelName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="hostel Name"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TaxiPhone">
 
-            </RadioGroup>
-            <EditText
-                android:id="@+id/decription"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:background="@drawable/custom_input"
-                android:hint="Trip description"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/hostelNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/TaxiPhone"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:background="@drawable/custom_input"
-                android:hint="Taxi Phone Number"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/decription" />
-
-            <EditText
-                android:id="@+id/hostelName"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:background="@drawable/custom_input"
-                android:hint="hostel Name"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TaxiPhone" />
-
-            <Button
-                android:id="@+id/update_button"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="40dp"
-                android:text="Update"
-                android:textSize="20sp"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hostelName" />
-
-            <Button
-                android:id="@+id/add_Expenses"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="16dp"
-                android:text="Add Expenses"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_button" />
-
-        </LinearLayout>
-    </ScrollView>
+    <Button
+        android:id="@+id/update_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
+        android:onClick="UpdateTrip"
+        android:text="Update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hostelName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

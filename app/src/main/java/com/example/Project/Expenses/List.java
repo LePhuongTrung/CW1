@@ -1,8 +1,11 @@
-package com.example.Project;
+package com.example.Project.Expenses;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,14 +15,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.Project.MyDatabaseHelper;
+import com.example.Project.R;
+import com.example.Project.Trip.MainActivity;
 
 import java.util.ArrayList;
 
-public class ExpensesList extends AppCompatActivity {
+public class List extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    FloatingActionButton add_button;
     ImageView empty_imageview;
     TextView no_data;
 
@@ -34,22 +38,12 @@ public class ExpensesList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.expenses_main);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        add_button = findViewById(R.id.add_button);
-        empty_imageview = findViewById(R.id.empty_imageview);
-        no_data = findViewById(R.id.no_data);
-        Intent intent = getIntent();
-        TripID = intent.getStringExtra("TripId");
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ExpensesList.this, addExpenses.class);
-                intent.putExtra("TripId", String.valueOf(TripID));
-                startActivity(intent);
-            }
-        });
+        connectLayout();
 
-        DB = new MyDatabaseHelper(ExpensesList.this);
+        getIntentDate();
+
+
+        DB = new MyDatabaseHelper(List.this);
         id = new ArrayList<>();
         type = new ArrayList<>();
         date = new ArrayList<>();
@@ -58,10 +52,20 @@ public class ExpensesList extends AppCompatActivity {
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapterExpenses(ExpensesList.this,this, id, type, date, amount);
+        customAdapter = new CustomAdapterExpenses(List.this,this, id, type, date, amount);
         recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ExpensesList.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(List.this));
 
+    }
+    public void connectLayout(){
+        recyclerView = findViewById(R.id.recyclerView);
+        empty_imageview = findViewById(R.id.empty_imageview);
+        no_data = findViewById(R.id.no_data);
+    }
+
+    public void getIntentDate(){
+        Intent intent = getIntent();
+        TripID = intent.getStringExtra("TripId");
     }
 
     @Override
@@ -72,6 +76,26 @@ public class ExpensesList extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.expense, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.Home){
+            goToHome();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void goToHome(){
+        Intent intent = new Intent(List.this, MainActivity.class);
+        startActivity(intent);
+    }
     void storeDataInArrays(){
         Cursor cursor = DB.readExpenses(TripID);
         if(cursor.getCount() == 0){
@@ -87,5 +111,11 @@ public class ExpensesList extends AppCompatActivity {
             empty_imageview.setVisibility(View.GONE);
             no_data.setVisibility(View.GONE);
         }
+    }
+
+    public void CreateExpenses(View view) {
+        Intent intent = new Intent(List.this, Create.class);
+        intent.putExtra("TripId", String.valueOf(TripID));
+        startActivity(intent);
     }
 }

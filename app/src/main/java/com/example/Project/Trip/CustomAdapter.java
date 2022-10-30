@@ -1,4 +1,4 @@
-package com.example.Project;
+package com.example.Project.Trip;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,15 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.Project.R;
 
 import java.util.ArrayList;
 
@@ -35,8 +34,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private ArrayList hostelName;
     private ArrayList SearchTripName;
 
-    CustomAdapter(Activity activity, Context context, ArrayList id, ArrayList TripName, ArrayList destination,
-                  ArrayList date, ArrayList rick, ArrayList taxiPhone, ArrayList hostelName){
+    public CustomAdapter(Activity activity, Context context, ArrayList id, ArrayList TripName, ArrayList destination,
+                         ArrayList date, ArrayList rick, ArrayList taxiPhone, ArrayList hostelName){
         this.activity = activity;
         this.context = context;
         this.tripId = id;
@@ -65,11 +64,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.destination.setText(String.valueOf(destination.get(position)));
         holder.dayOfTrip.setText(String.valueOf(date.get(position)));
         holder.taxiPhone.setText(String.valueOf(taxiPhone.get(position)));
-        //Recyclerview onClickListener
+
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateActivity.class);
+                Intent intent = new Intent(context, Update.class);
                 intent.putExtra("id", String.valueOf(tripId.get(position)));
                 intent.putExtra("name", String.valueOf(TripName.get(position)));
                 intent.putExtra("destination", String.valueOf(destination.get(position)));
@@ -90,7 +89,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id, TripName, destination, dayOfTrip, rick, taxiPhone, hostelName;
+        TextView id, TripName, destination, dayOfTrip, taxiPhone;
         LinearLayout mainLayout;
 
         MyViewHolder(@NonNull View itemView) {
@@ -101,7 +100,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             dayOfTrip = itemView.findViewById(R.id.dayOfTrip);
             taxiPhone = itemView.findViewById(R.id.TaxiPhone);
             mainLayout = itemView.findViewById(R.id.mainLayout);
-            //Animate Recyclerview
+
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
             mainLayout.setAnimation(translate_anim);
         }

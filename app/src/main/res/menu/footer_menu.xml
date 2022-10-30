@@ -7,7 +7,7 @@
         android:title="Trip"
         android:icon="@drawable/ic_trip_24" />
     <item
-        android:id="@+id/Upload"
-        android:title="Upload"
-        android:icon="@drawable/ic_baseline_cloud_upload_24" />
+        android:id="@+id/Weather"
+        android:title="Weather"
+        android:icon="@drawable/ic_baseline_cloud_24" />
 </menu>
